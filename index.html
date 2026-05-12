@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>K. Ganesh Mohan | Digital Content Designer</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0c12;
+      color: #f0f3fa;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* ---- ATTRACTIVE BACKGROUND (dynamic + creative, text-safe) ---- */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(66, 153, 225, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.08) 0%, transparent 45%),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 8px);
+      z-index: -2;
+    }
+
+    /* subtle grid + gradient overlay = artistic but not intrusive */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(125deg, rgba(10, 12, 18, 0.88), rgba(18, 22, 35, 0.92));
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ----- GLASS HEADER (sticky) ----- */
+    header {
+      padding: 18px 0;
+      background: rgba(18, 22, 35, 0.75);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.5rem;
+      letter-spacing: -0.3px;
+      background: linear-gradient(135deg, #90d0ff, #b77eff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links li {
+      cursor: pointer;
+      font-weight: 600;
+      color: #ccd6f6;
+      transition: 0.2s;
+      font-size: 0.95rem;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 4px;
+    }
+
+    .nav-links li:hover, .nav-links li.active {
+      color: #7aa2f7;
+      border-bottom-color: #7aa2f7;
+    }
+
+    /* sections */
+    .section {
+      padding: 60px 0 70px;
+      scroll-margin-top: 85px;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 40px;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, #3b82f6, #a855f7);
+      border-radius: 4px;
+    }
+
+    /* ----- HERO SECTION (modern identity)----- */
+    .hero {
+      padding: 50px 0 30px;
+      text-align: center;
+    }
+    .hero-badge {
+      background: rgba(59,130,246,0.2);
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 24px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(59,130,246,0.4);
+    }
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      background: linear-gradient(to right, #ffffff, #b9e0ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 12px;
+    }
+    .hero-tag {
+      font-size: 1.3rem;
+      color: #a5c9ff;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+    .hero-desc {
+      max-width: 720px;
+      margin: 0 auto;
+      color: #cbd5ff;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* ---------- CARDS & LAYOUT (glassmorphism, all text visible) ---------- */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+    }
+
+    .info-card {
+      background: rgba(22, 28, 45, 0.65);
+      backdrop-filter: blur(8px);
+      border-radius: 32px;
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: 0.2s;
+      height: 100%;
+    }
+    .info-card:hover {
+      border-color: rgba(59,130,246,0.4);
+      background: rgba(28, 34, 54, 0.75);
+    }
+    .card-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #eef3ff;
+    }
+    .card-title i {
+      color: #5f9eff;
+      font-size: 1.8rem;
+    }
+
+    .contact-details p, .education-item p, .skill-list span {
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      color: #e0e7ff;
+    }
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .skill-list span {
+      background: rgba(59,130,246,0.18);
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      backdrop-filter: blur(2px);
+    }
+    .interest-list, .deliver-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .interest-list li, .deliver-list li {
+      background: rgba(139,92,246,0.15);
+      padding: 5px 12px;
+      border-radius: 30px;
+      list-style: none;
+      font-size: 0.85rem;
+    }
+    .project-block {
+      background: rgba(0,0,0,0.25);
+      border-radius: 24px;
+      padding: 20px;
+      margin-top: 12px;
+    }
+    .project-block h4 {
+      font-size: 1.2rem;
+      color: #a5d8ff;
+    }
+
+    hr {
+      border-color: #2d3a5e;
+      margin: 24px 0;
+    }
+
+    /* footer */
+    footer {
+      background: #03060c;
+      text-align: center;
+      padding: 32px;
+      border-top: 1px solid #1f2a44;
+      margin-top: 30px;
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+
+    /* responsive */
+    @media (max-width: 750px) {
+      .container { padding: 0 20px; }
+      .hero h1 { font-size: 2.2rem; }
+      .section-title { font-size: 1.7rem; }
+      .info-card { padding: 20px; }
+      .nav-links { gap: 18px; }
+    }
+    @media (max-width: 500px) {
+      .hero h1 { font-size: 1.9rem; }
+      .hero-tag { font-size: 1rem; }
+    }
+    .btn-glow {
+      background: linear-gradient(95deg, #2563eb, #7c3aed);
+      border: none;
+      padding: 12px 26px;
+      border-radius: 40px;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: 0.2s;
+    }
+    .btn-glow:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 20px rgba(37,99,235,0.4);
+    }
+    a {
+      color: #b9d0ff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">K. GANESH MOHAN</div>
+        <ul class="nav-links">
+          <li data-section="home" class="active">Home</li>
+          <li data-section="profile">Profile</li>
+          <li data-section="education">Education</li>
+          <li data-section="projects">Projects</li>
+          <li data-section="contact">Contact</li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- HOME / HERO SECTION (visible initially) -->
+      <div id="home-section" class="section" style="display: block;">
+        <div class="hero">
+          <div class="hero-badge"><i class="fas fa-pen-fancy"></i> digital content designer</div>
+          <h1>K. GANESH MOHAN</h1>
+          <div class="hero-tag">✦ Photoshop • Posters • Social Media Creatives ✦</div>
+          <p class="hero-desc">Creative and detail-oriented designer skilled in Adobe Photoshop, content creation, and modern visual trends. Passionate about designing posters, notices, and digital creatives for brands and events.</p>
+          <button class="btn-glow" id="exploreWorkBtn"><i class="fas fa-arrow-down"></i> Explore my work & profile</button>
+        </div>
+      </div>
+
+      <!-- PROFILE SECTION (includes profile text, design focus, area of interest) -->
+      <div id="profile-section" class="section" style="display: none;">
+        <h2 class="section-title">Profile Insight</h2>
+        <div class="grid-2col">
+          <div class="info-card">
+            <div class="card-title"><i class="fas fa-user-astronaut"></i> Who I Am</div>
+            <p style="margin-bottom: 20px; line-height: 1.6;">Creative and detail-oriented fresher skilled in Adobe Photoshop and visual content creation. Passionate about designing posters, notices, and social media creatives with a strong sense of layout and design trends. Eager to contribute my creativity in a publishing and design-oriented role.</p>
+            <div><i class="fas fa-bullseye" style="color:#5f9eff;"></i> <strong>Design Focus:</strong> Posters & flyers • Social creatives • Photo editing • Simple layouts</div>
+            <hr>
+            <div><i class="fas fa-star-of-life"></i> <strong>What I Can Deliver:</strong></div>
+            <ul class="deliver-list" style="margin-top: 10px;">
+              <li>Attractive posters</li>
+              <li>Clean notices</li>
+              <li>Engaging social posts</li>
+              <li>Edited images</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <div class="card-title"><i class="fas fa-heart"></i> Area of Interest</div>
+            <ul class="interest-list" style="margin-top: 10px;">
+              <li>Graphic Designing</li>
+              <li>Photo & Poster Editing</li>
+              <li>Social Media Content Design</li>
+              <li>Desktop Publishing Works</li>
+            </ul>
+            <div class="card-title" style="margin-top: 28px;"><i class="fas fa-palette"></i> Skills Highlight</div>
+            <div class="skill-list">
+              <span>Adobe Photoshop</span><span>Poster & Notice Design</span><span>Social Media Creatives</span>
+              <span>Content Layout & Publishing</span><span>Photo Editing</span><span>Design Trend Awareness</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EDUCATION SECTION -->
+      <div id="education-section" class="section" style="display: none;">
+        <h2 class="section-title">Education & Languages</h2>
+        <div class="grid-2col">
+          <div class="info-card">
+            <div class="card-title"><i class="fas fa-graduation-cap"></i> Academic Journey</div>
+            <div class="education-item">
+              <p><strong>🎓 Master of Commerce with Computer Application (2024 - 2026)</strong><br>Virudhunagar Hindu Nadar Senthilumara Nadar's College</p>
+              <p style="margin-top: 18px;"><strong>📘 Bachelor of Commerce with Computer Application (2021 - 2024)</strong><br>Sri Vidhya Arts and Science College, Virudhunagar</p>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="card-title"><i class="fas fa-language"></i> Languages & Contact Base</div>
+            <div class="skill-list" style="margin-bottom: 18px;">
+              <span>🇬🇧 English</span><span>🇮🇳 Tamil</span>
+            </div>
+            <div><i class="fas fa-map-pin"></i> <strong>Location:</strong> Thiruthangal, Sivakasi (Virudhunagar Dt.)</div>
+            <div style="margin-top: 16px;"><i class="fas fa-envelope"></i> ganeshmohan1201@gmail.com</div>
+            <div><i class="fas fa-phone-alt"></i> +91 6369215366</div>
+            <div><i class="fas fa-home"></i> 732/183B Gandhi Ji Nagar, Satchiyapuram Road, Thiruthangal</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECTS / WORK SECTION (FIXIT FINDER + additional design examples) -->
+      <div id="projects-section" class="section" style="display: none;">
+      <div class="info-card">
+  <div class="card-title"><i class="fas fa-brush"></i> Design Portfolio Samples</div>
+
+  <!-- SAMPLE PROJECT IMAGE -->
+  <div style="margin-bottom: 20px; overflow: hidden; border-radius: 20px; border: 1px solid rgba(255,255,255,0.08);">
+    <img
+      src="images/kvs.jpg"
+      alt="School Admission Poster Design"
+      style="width: 100%; display: block; object-fit: cover;"
+    >
+  </div>
+
+  <p>
+    Admission campaign poster designed for a school promotion using Photoshop.
+    Focused on strong typography, clean layout structure, and visually engaging
+    composition suitable for social media and print promotion.
+  </p>
+ <div style="margin-bottom: 20px; overflow: hidden; border-radius: 20px; border: 1px solid rgba(255,255,255,0.08);">
+    <img
+      src="images/smp.jpg"
+      alt="School Admission Poster Design"
+      style="width: 100%; display: block; object-fit: cover;"
+    >
+  </div>
+
+  <p>
+    annual day invitation poster
+  </p>
+  <div class="skill-list" style="margin-top: 12px;">
+    <span>🎓 Admission Poster</span>
+    <span>📢 Promotional Creative</span>
+    <span>🖼 Photoshop Editing</span>
+    <span>📄 Print & Social Media Design</span>
+  </div>
+
+  <div style="margin-top: 24px; background: rgba(0,0,0,0.3); border-radius: 20px; padding: 12px 16px;">
+    <i class="fas fa-quote-left"></i>
+    “I turn ideas into striking visuals — from social media creatives to clean, professional notices.”
+  </div>
+</div>
+
+        <!-- Extra Design Focus Row -->
+        <div style="margin-top: 40px;">
+          <div class="info-card" style="text-align: center;">
+            <div class="card-title" style="justify-content: center;"><i class="fas fa-magic"></i> What I deliver as a designer</div>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+              <div><i class="fas fa-certificate"></i> High-res Posters</div>
+              <div><i class="fas fa-newspaper"></i> Notice/Layouts</div>
+              <div><i class="fas fa-ad"></i> Social Media Creatives</div>
+              <div><i class="fas fa-crop-alt"></i> Retouching & Edits</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT SECTION (with direct info) -->
+      <div id="contact-section" class="section" style="display: none;">
+        <h2 class="section-title">Let’s Connect</h2>
+        <div class="grid-2col">
+          <div class="info-card">
+            <div class="card-title"><i class="fas fa-address-card"></i> Contact Details</div>
+            <p><i class="fas fa-phone-alt"></i> <strong>Phone:</strong> +91 6369215366</p>
+            <p><i class="fas fa-envelope"></i> <strong>Email:</strong> ganeshmohan1201@gmail.com</p>
+            <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> 732/183B Gandhi Ji Nagar, Satchiyapuram Road, Thiruthangal - 626131</p>
+            <p><i class="fab fa-instagram"></i> <strong>Instagram:</strong> <a href="https://www.instagram.com/gansmohanx?igsh=aDM1dzlndmw4MXI2" target="_blank">@gansmohanx</a></p>
+          </div>
+          <div class="info-card">
+            <div class="card-title"><i class="fas fa-comment-dots"></i> Availability</div>
+            <p>Open for freelance poster design, social media creatives, and publishing-related design works. Based in Thiruthangal / Sivakasi region but available for remote collabs.</p>
+            <hr>
+            <p><i class="fas fa-clock"></i> Quick turnaround for festive / diwali design needs.</p>
+            <button class="btn-glow" id="copyEmailBtn" style="background: #2d3e6e; margin-top: 10px;"><i class="far fa-copy"></i> Copy Email</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 K. Ganesh Mohan — Digital Content Designer | Photoshop • Posters • Creative Visuals</p>
+    <p style="margin-top: 8px; font-size:0.75rem;">portfolio based in Thiruthangal — available for design opportunities</p>
+  </footer>
+
+  <script>
+    // SECTIONS MANAGEMENT
+    const sectionsMap = {
+      home: document.getElementById('home-section'),
+      profile: document.getElementById('profile-section'),
+      education: document.getElementById('education-section'),
+      projects: document.getElementById('projects-section'),
+      contact: document.getElementById('contact-section')
+    };
+
+    const navItems = document.querySelectorAll('.nav-links li');
+
+    function activateSection(sectionId) {
+      // hide all
+      Object.values(sectionsMap).forEach(section => {
+        if (section) section.style.display = 'none';
+      });
+      // show selected
+      if (sectionsMap[sectionId]) {
+        sectionsMap[sectionId].style.display = 'block';
+      }
+      // update active nav style
+      navItems.forEach(item => {
+        const itemSection = item.getAttribute('data-section');
+        if (itemSection === sectionId) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+      // smooth scroll to top of the section for better UX
+      const activeSectionElem = sectionsMap[sectionId];
+      if (activeSectionElem) {
+        activeSectionElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const sectionId = item.getAttribute('data-section');
+        if (sectionId && sectionsMap[sectionId]) {
+          activateSection(sectionId);
+        }
+      });
+    });
+
+    // explore button on home -> scroll to profile section
+    const exploreBtn = document.getElementById('exploreWorkBtn');
+    if (exploreBtn) {
+      exploreBtn.addEventListener('click', () => {
+        activateSection('profile');
+      });
+    }
+
+    // Copy email functionality
+    const copyBtn = document.getElementById('copyEmailBtn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        const email = 'ganeshmohan1201@gmail.com';
+        navigator.clipboard.writeText(email).then(() => {
+          const originalText = copyBtn.innerHTML;
+          copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          setTimeout(() => {
+            copyBtn.innerHTML = originalText;
+          }, 2000);
+        }).catch(() => {
+          alert('Manual copy: ganeshmohan1201@gmail.com');
+        });
+      });
+    }
+
+    // default active section = home
+    activateSection('home');
+  </script>
+</body>
+</html>
